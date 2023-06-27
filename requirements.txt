@@ -1,0 +1,5 @@
+colorama==0.4.6
+pyfiglet==0.8.post1
+termcolor==2.3.0
+wizsprinter==0.6.9
+git+https://github.com/wizwalker/wizwalker@development
