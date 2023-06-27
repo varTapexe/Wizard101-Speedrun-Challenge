@@ -1,6 +1,4 @@
 import asyncio
-from pyfiglet import Figlet
-from termcolor import colored, cprint
 import math
 from colorama import init, Fore, Back, Style
 from wizwalker import ClientHandler
@@ -134,15 +132,7 @@ async def unhook_ww(client: Client, client_camera: CameraController, handler: Cl
 client = False
 async def start():
     global client
-    
-    f = Figlet(font="ogre")
-    TITLE_SCREEN = f"""
-    { f.renderText("Tap Challenge")[:-3] }
-    { colored(" Created with ♥ by Tap! ", "blue") }
-
-    Goodluck! :)
-    """
-    print(TITLE_SCREEN)
+    print("Tap's Speedrun Challenge:")
     print(Fore.BLUE + "LAUNCHING | " +
     Fore.GREEN + "Starting in 3 seconds...") # Feel free to change the 3 to any amount of delay before it starts. 
     await asyncio.sleep(3) # Change this too if you do
