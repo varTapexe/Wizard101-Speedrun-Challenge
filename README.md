@@ -17,12 +17,12 @@ Replace E:\Kingsisle Entertainment\Wizard101 with YOUR Wizard101 path.
 # How do you run this?
 
 1. Install the [latest version of python](https://www.python.org/downloads/).
-1. Install the [latest version of GIT](https://git-scm.com/download/win).
-2. Install [Visual Studio Code](https://code.visualstudio.com)
-3. Open Visual Studio Code
-4. Click **Terminal** > **New Terminal**
-5. In the terminal type or paste: `python -m pip install -r requirements.txt`
-6. After everything is installed type `py main.py` to run the file.
+2. Install the [latest version of GIT](https://git-scm.com/download/win).
+3. Install [Visual Studio Code](https://code.visualstudio.com)
+4. Open Visual Studio Code
+5. Click **Terminal** > **New Terminal**
+6. In the terminal type or paste: `python -m pip install -r requirements.txt`
+7. After everything is installed type `py main.py` to run the file.
 
 # Rules:
 1. Must start on a **new** wizard. Any school is allowed but make sure you are on a brand new wizard/account.
