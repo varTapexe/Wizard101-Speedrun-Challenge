@@ -24,9 +24,7 @@ Replace E:\Kingsisle Entertainment\Wizard101 with YOUR Wizard101 path.
 5. In the terminal type or paste: `python -m pip install -r requirements.txt`
 6. After everything is installed type `py main.py` to run the file.
 
-# Speedrun Rules.
-
-### Rules:
+# Rules:
 1. Must start on a **new** wizard. Any school is allowed but make sure you are on a brand new wizard/account.
 2. Timer starts once you first talk to Merle Ambrose in his office. (When you get teleported to Unicorn Way)
 3. No pets besides the one you get in the main quest.
@@ -37,7 +35,7 @@ Replace E:\Kingsisle Entertainment\Wizard101 with YOUR Wizard101 path.
 7. In recording you must have your game, stopwatch, and Visual Studio Code window in view the entire time.
 8. Use common sense, some rules may not be written down here but just use your brain on what would be considered cheating.
 
-### Instructions:
+# Instructions:
 
 For this speedrun you will not be completing Wizard City, I have changed the goal to **Defeat the Kraken in Triton Avenue** to allow people without membership to participate in this challenge.
 
