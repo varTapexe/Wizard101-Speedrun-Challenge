@@ -132,7 +132,7 @@ async def unhook_ww(client: Client, client_camera: CameraController, handler: Cl
 client = False
 async def start():
     global client
-    print("Tap's Speedrun Challenge:")
+    print("\nTap's Speedrun Challenge:")
     print(Fore.BLUE + "LAUNCHING | " +
     Fore.GREEN + "Starting in 3 seconds...") # Feel free to change the 3 to any amount of delay before it starts. 
     await asyncio.sleep(3) # Change this too if you do
@@ -157,11 +157,12 @@ async def start():
                     await unhook_ww(client, client_camera, handler)
                 except HookNotActive:
                     print("")
-                exit()
+                input(Style.DIM + "Press ENTER to close this terminal." + Style.RESET_ALL)
         except Exception as e:
             await unhook_ww(client, client_camera, handler)
             print(Fore.RED + "ERR | " +
     Fore.RED + "An error occured while hooking clients: " + Fore.WHITE + f' {e}')
+            input(Style.DIM + "Press ENTER to close this terminal." + Style.RESET_ALL)
 
     except Exception as e:
         if 'root.wad not found' in f'{e}':
@@ -172,7 +173,7 @@ async def start():
             await unhook_ww(client, client_camera, handler)
         except:
             print("")
-        exit()
+        input(Style.DIM + "Press ENTER to close this terminal." + Style.RESET_ALL)
 
 async def boost(client: Client, camera: CameraController, handler: ClientHandler):
     if client:
