@@ -3,19 +3,18 @@
 # Wizard101 Chaos Mode Challenge - By [Tap](https://www.tapwater.dev): 
 *This file will tell you everything you need to know about this script!*
 
-# What do you need to change?
-### Your Wizard101 path. In the `main.py` file you will see this line:
-```python
-    utils.override_wiz_install_location(r'E:\Kingsisle Entertainment\Wizard101')
-```
-Replace E:\Kingsisle Entertainment\Wizard101 with YOUR Wizard101 path.
-
-> Right click your **Wizard101** icon.
-> Click **properties**.
-> Copy the text in the `Start in:` box __**without** the quotation marks.__
-
 # How do you run this?
 
+**Simple:**
+1. Run the `TapSpeedrunChallenge.exe` file.
+2. Paste your **WIZARD101 PATH** into the terminal.
+
+__"How do I get my Wizard101 Path?"__
+> 1. Right click your **Wizard101** icon.
+> 2. Click **properties**.
+> 3. Copy the text in the `Start in:` box __**without** the quotation marks.__
+
+**Advanced:**
 1. Install the [latest version of python](https://www.python.org/downloads/).
 2. Install the [latest version of GIT](https://git-scm.com/download/win).
 3. Install [Visual Studio Code](https://code.visualstudio.com)
