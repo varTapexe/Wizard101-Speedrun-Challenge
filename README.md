@@ -19,9 +19,11 @@ __"How do I get my Wizard101 Path?"__
 2. Install the [latest version of GIT](https://git-scm.com/download/win).
 3. Install [Visual Studio Code](https://code.visualstudio.com)
 4. Open Visual Studio Code
-5. Click **Terminal** > **New Terminal**
-6. In the terminal type or paste: `python -m pip install -r requirements.txt`
-7. After everything is installed type `py main.py` to run the file.
+5. Click **File** > **Open Folder**
+6. Find the folder you just downloaded and select the **src** folder.a
+7. Click **Terminal** > **New Terminal**
+8. In the terminal type or paste: `python -m pip install -r requirements.txt`
+9. After everything is installed type `py main.py` to run the file.
 
 # Rules:
 1. Must start on a **new** wizard. Any school is allowed but make sure you are on a brand new wizard/account.
