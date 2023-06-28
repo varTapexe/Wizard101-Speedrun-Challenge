@@ -23,12 +23,12 @@ __"How do I get my Wizard101 Path?"__
 6. Find the folder you just downloaded and select the **src** folder.a
 7. Click **Terminal** > **New Terminal**
 8. In the terminal make sure you're in the src folder:
-   I. Right click the src folder on the left.
-   II. Click **Copy Path**.
-   III. Type `cd ` followed by the path you copied.
-   IV. Example: `cd C:\Users\YOURNAME\Downloads\Wizad101-Speedrun-Challenge\src`
-10. In the terminal type or paste: `python -m pip install -r requirements.txt`
-11. After everything is installed type `py main.py` to run the file.
+   1. Right click the src folder on the left.
+   2. Click **Copy Path**.
+   3. Type `cd ` followed by the path you copied.
+   4. Example: `cd C:\Users\YOURNAME\Downloads\Wizad101-Speedrun-Challenge\src`
+9. In the terminal type or paste: `python -m pip install -r requirements.txt`
+10. After everything is installed type `py main.py` to run the file.
 
 # Rules:
 1. Must start on a **new** wizard. Any school is allowed but make sure you are on a brand new wizard/account.
