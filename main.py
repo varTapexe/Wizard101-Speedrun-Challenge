@@ -7,8 +7,8 @@ from wizwalker.errors import HookNotActive
 from wizwalker import Client, utils, Orient, XYZ
 import random
 
-# Customize Below:
-utils.override_wiz_install_location(r'E:\Kingsisle Entertainment\Wizard101') # Enter your wizard101 path.
+wiz_path = input(Fore.YELLOW + "Paste your Wizard101 file path:\n" + Fore.WHITE)
+utils.override_wiz_install_location(rf'{wiz_path}') # Enter your wizard101 path.
 
 init() #for logging
 
@@ -161,10 +161,13 @@ async def start():
         except Exception as e:
             await unhook_ww(client, client_camera, handler)
             print(Fore.RED + "ERR | " +
-    Fore.RED + "An error occured while hooking clients: " + Fore.WHITE + e)
+    Fore.RED + "An error occured while hooking clients: " + Fore.WHITE + f' {e}')
 
-    except:
-        print(Fore.RED + "An error occured, try opening or restarting Wizard101." + Fore.RESET)
+    except Exception as e:
+        if 'root.wad not found' in f'{e}':
+            print(Fore.RED + "\nInvalid Wizard101 file path.\n" + Fore.RESET + f"{Fore.YELLOW} 1. {Fore.WHITE}Right click your {Fore.GREEN} Wizard101 icon.{Fore.WHITE} \n{Fore.YELLOW} 2. {Fore.WHITE}Click {Fore.GREEN}properties. {Fore.WHITE}\n{Fore.YELLOW} 3. {Fore.WHITE}Copy the text in the {Fore.GREEN}Start in:{Fore.WHITE} box {Fore.GREEN}without the quotation marks. {Fore.WHITE}\n{Fore.YELLOW} 4. {Fore.WHITE}That's your Wizard101 path!\n{Style.DIM}Should look something like: {Style.RESET_ALL}E:\Kingsisle Entertainment\Wizard101")
+        else: 
+            print(Fore.RED + "An error occured, try opening or restarting Wizard101." + Fore.RESET + Style.DIM + f' ({e})' + Style.RESET_ALL)
         try:
             await unhook_ww(client, client_camera, handler)
         except:
