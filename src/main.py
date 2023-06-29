@@ -113,8 +113,16 @@ async def load_check(client: Client):
             while await client.is_loading() == True:
                 await asyncio.sleep(0.1)
             await asyncio.sleep(0.25) # increase if you load slower
-            await set_player_scale(player_size, client)
-            await set_player_speed(player_speed, client)
+            async def reapply_effects():
+                try:
+                    await set_player_scale(player_size, client)
+                    await set_player_speed(player_speed, client)
+                    print(Fore.CYAN + f"SIZE: {player_size}x, SPEED: {player_speed}%.")
+                except:
+                    print(Fore.RED + "Failed to re-apply size and speed, trying again..." + Fore.RESET)
+                    await asyncio.sleep(0.1)
+                    await reapply_effects()
+            await reapply_effects()
         await asyncio.sleep(1)
 # This function checks if you encounter a loading screen (or enter a new zone, which clears all effects)
 
@@ -126,7 +134,6 @@ async def unhook_ww(client: Client, client_camera: CameraController, handler: Cl
     await update_camera(None, 0.0, None, client_camera)
     await update_player(0.0, None, None, client)
     await handler.close()
-    exit()
 # DO NOT TOUCH ANYTHING IN THE DASHES -----------------------------------------------------
 
 client = False
@@ -152,11 +159,12 @@ async def start():
                 print(Fore.YELLOW + f'Starting scripts: (Press CTRL+C in the terminal to stop.)\n')
                 tasks = [boost(client, client_camera, handler), grow(client, client_camera, handler), npc(client, client_camera, handler), load_check(client)]
                 await asyncio.gather(*tasks)
-            except:
+            except Exception as e:
                 try:
                     await unhook_ww(client, client_camera, handler)
                 except HookNotActive:
                     print("")
+                print(f'{e}')
                 input(Style.DIM + "Press ENTER to close this terminal." + Style.RESET_ALL)
         except Exception as e:
             await unhook_ww(client, client_camera, handler)
@@ -169,45 +177,52 @@ async def start():
             print(Fore.RED + "\nInvalid Wizard101 file path.\n" + Fore.RESET + f"{Fore.YELLOW} 1. {Fore.WHITE}Right click your {Fore.GREEN} Wizard101 icon.{Fore.WHITE} \n{Fore.YELLOW} 2. {Fore.WHITE}Click {Fore.GREEN}properties. {Fore.WHITE}\n{Fore.YELLOW} 3. {Fore.WHITE}Copy the text in the {Fore.GREEN}Start in:{Fore.WHITE} box {Fore.GREEN}without the quotation marks. {Fore.WHITE}\n{Fore.YELLOW} 4. {Fore.WHITE}That's your Wizard101 path!\n{Style.DIM}Should look something like: {Style.RESET_ALL}E:\Kingsisle Entertainment\Wizard101")
         else: 
             print(Fore.RED + "An error occured, try opening or restarting Wizard101." + Fore.RESET + Style.DIM + f' ({e})' + Style.RESET_ALL)
+
         try:
             await unhook_ww(client, client_camera, handler)
         except:
-            print("")
+            print("Failed to unhook clients.")
         input(Style.DIM + "Press ENTER to close this terminal." + Style.RESET_ALL)
 
 async def boost(client: Client, camera: CameraController, handler: ClientHandler):
-    if client:
-        print(Fore.CYAN + "Initializing | " +
-    Fore.GREEN + f"Random speed every 10 seconds.")
-        print(Fore.YELLOW + "Initialized | " +
-    Fore.GREEN + f"Random speed loop started." + Fore.WHITE)
-        while True: # Begin loop
-            await asyncio.sleep(10) # wait 10 seconds
-            random_number = 0
-            sign = random.choice([-1, 1])
-            if sign == -1:
-                random_number = random.randint(-80, 0)
-            else:
-                random_number = random.randint(0, 10000)
-            print(Fore.BLUE + "New Speed: " +
-    Fore.LIGHTGREEN_EX + f"{random_number}%" + Fore.WHITE)
-            await set_player_speed(random_number, client)
-    else: 
-        print(Fore.RED + "Client was never initiated." + Fore.RESET)
+    try:
+        if client:
+            print(Fore.CYAN + "Initializing | " +
+        Fore.GREEN + f"Random speed every 10 seconds.")
+            print(Fore.YELLOW + "Initialized | " +
+        Fore.GREEN + f"Random speed loop started." + Fore.WHITE)
+            while True: # Begin loop
+                await asyncio.sleep(10) # wait 10 seconds
+                random_number = 0
+                sign = random.choice([-1, 1])
+                if sign == -1:
+                    random_number = random.randint(-80, 0)
+                else:
+                    random_number = random.randint(0, 10000)
+                print(Fore.BLUE + "New Speed: " +
+        Fore.LIGHTGREEN_EX + f"{random_number}%" + Fore.WHITE)
+                await set_player_speed(random_number, client)
+        else: 
+            print(Fore.RED + "Client was never initiated." + Fore.RESET)
+    except:
+        await unhook_ww(client, camera, handler)
 
 async def grow(client: Client, camera: CameraController, handler: ClientHandler):
-    if client:
-        print(Fore.CYAN + "Initializing | " +
-        Fore.GREEN + f"Grow player size 0.1% every second.")
-        player_size = 1
-        print(Fore.YELLOW + "Initialized | " +
-    Fore.GREEN + f"Player now growing." + Fore.WHITE)
-        while True: # Begin loop
-            player_size += 0.001
-            await set_player_scale(player_size, client)
-            await asyncio.sleep(1)
-    else: 
-        print(Fore.RED + "Client was never initiated." + Fore.RESET)
+    try:
+        if client:
+            print(Fore.CYAN + "Initializing | " +
+            Fore.GREEN + f"Grow player size 0.1% every second.")
+            player_size = 1
+            print(Fore.YELLOW + "Initialized | " +
+        Fore.GREEN + f"Player now growing." + Fore.WHITE)
+            while True: # Begin loop
+                player_size += 0.001
+                await set_player_scale(player_size, client)
+                await asyncio.sleep(1)
+        else: 
+            print(Fore.RED + "Client was never initiated." + Fore.RESET)
+    except:
+        await unhook_ww(client, camera, handler)
 
 async def npc(client: Client, camera: CameraController, handler: ClientHandler):
     if client:
@@ -222,13 +237,16 @@ async def npc(client: Client, camera: CameraController, handler: ClientHandler):
 
             # Then tp to random entity:
             ent_list = await client.get_base_entity_list()
-            for entity in ent_list:
-                if await entity.display_name():
-                    if calc_Distance(await client.body.position(), await entity.location()) < 25000:
-                        entity_list.append(entity)
-            chosen_entity = random.choice(entity_list)
-            await client.teleport(await chosen_entity.location())
-            print(Fore.CYAN + f"FIGHT COMPLETED |" + Fore.LIGHTGREEN_EX +  f"Teleported to" + Fore.BLUE + f" {await chosen_entity.display_name()}." + Fore.RESET)
+            try:
+                for entity in ent_list:
+                    if await entity.display_name():
+                        if calc_Distance(await client.body.position(), await entity.location()) < 25000:
+                            entity_list.append(entity)
+                chosen_entity = random.choice(entity_list)
+                await client.teleport(await chosen_entity.location())
+                print(Fore.CYAN + f"FIGHT COMPLETED |" + Fore.LIGHTGREEN_EX +  f" Teleported to" + Fore.BLUE + f" {await chosen_entity.display_name()}." + Fore.RESET)
+            except:           
+                print(Fore.CYAN + f"FIGHT COMPLETED |" + Fore.RED + f" No entity found." + Fore.RESET)
             entity_list = [] # Reset entity list.
     else: 
         print(Fore.RED + "Client was never initiated." + Fore.RESET)
