@@ -236,8 +236,8 @@ async def npc(client: Client, camera: CameraController, handler: ClientHandler):
             await wait_for_combat(client) # Once in a fight, wait for fight to finish.
 
             # Then tp to random entity:
-            ent_list = await client.get_base_entity_list()
             try:
+		ent_list = await client.get_base_entity_list()
                 for entity in ent_list:
                     if await entity.display_name():
                         if calc_Distance(await client.body.position(), await entity.location()) < 25000:
