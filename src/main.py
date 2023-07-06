@@ -1,6 +1,5 @@
 import asyncio
 import math
-import keyboard
 from colorama import init, Fore, Back, Style
 from wizwalker import ClientHandler
 from wizwalker.memory.memory_objects.camera_controller import ElasticCameraController, CameraController
