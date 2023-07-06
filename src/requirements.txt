@@ -1,3 +1,2 @@
 colorama==0.4.6
-wizsprinter==0.6.9
-git+https://github.com/wizwalker/wizwalker@development
+wizwalker @ git+https://github.com/wizwalker/wizwalker@7e804fe81a06a8cae448564b51260301d5948c77
