@@ -6,7 +6,7 @@
 # How do you run this?
 
 **Simple:**
-1. Run the `TapSpeedrunChallenge.exe` file.
+1. Run the `TapSpeedrunChallenge.exe` file **AS ADMINISTRATOR**.
 2. Paste your **WIZARD101 PATH** into the terminal.
 
 __"How do I get my Wizard101 Path?"__
